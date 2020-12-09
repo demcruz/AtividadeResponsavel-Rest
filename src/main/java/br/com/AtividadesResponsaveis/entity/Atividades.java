@@ -9,11 +9,13 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -78,8 +80,10 @@ public class Atividades implements Serializable {
 //	            {@JoinColumn(name="ID_Responsavel")})
 //	private List<Responsavel> responsaveis;
 
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinTable(name="TB_MGD_Atividade_Has_Responsavel")
+	@OneToMany(cascade=CascadeType.PERSIST)
+	@JoinTable(name="TB_MGD_Atividade_Has_Responsavel", joinColumns=
+        {@JoinColumn(name="ID_Atividade")}, inverseJoinColumns=
+        {@JoinColumn(name="ID_Responsavel")})
 	private List<Responsavel> responsaveis = new ArrayList<Responsavel>();
 
 	@Column(name = "NR_Atividade")

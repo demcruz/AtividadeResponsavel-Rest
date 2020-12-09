@@ -37,14 +37,14 @@ public class ResponsavelAtividade implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID_Atividade_Has_Responsavel")
 	private Integer id;
-//
-//	@ManyToOne
-//	@JoinColumn(name = "ID_Atividade")
-//	private Atividades atividade;
-// 
-//	@ManyToOne
-//	@JoinColumn(name = "ID_Responsavel")
-//	private Responsavel responsavel;
+
+	@ManyToOne (fetch = FetchType.EAGER)
+	@JoinColumn(name = "ID_Atividade")
+	private Atividades atividade;
+ 
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "ID_Responsavel")
+	private Responsavel responsavel ;
 	
 
 
